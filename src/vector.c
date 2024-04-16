@@ -47,6 +47,7 @@ void VectorPush(struct Vector *vec, void *val)
 		if (tmp == NULL) {
 			tmp = malloc(vec->cap * vec->item_size);
 			memcpy(tmp, vec->data, vec->size * vec->item_size);
+			free(vec->data);
 		}
 
 		vec->data = tmp;
@@ -70,6 +71,7 @@ void VectorPop(struct Vector *vec)
 		if (tmp == NULL) {
 			tmp = malloc(vec->cap * vec->item_size);
 			memcpy(tmp, vec->data, vec->size * vec->item_size);
+			free(vec->data);
 		}
 		vec->data = tmp;
 		vec->cap = new_size;

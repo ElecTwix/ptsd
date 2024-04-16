@@ -4,6 +4,7 @@ add_requires("cunit")
 target("ptsd")
 set_kind("static")
 add_includedirs("include")
+add_cflags("-fsanitize=address", { tools = "gcc" })
 add_files("src/*.c")
 
 for _, file in ipairs(os.files("test/test_*.c")) do
