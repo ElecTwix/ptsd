@@ -15,7 +15,7 @@ VECTOR_ERROR_TYPE VectorInit(struct Vector *vec, size_t cap, size_t item_size)
 	}
 
 	if (item_size == 0) {
-		return VECTOR_ERR_SIZE_INVALID_PTR;
+		return VECTOR_ERR_SIZE_INVALID;
 	}
 
 	if (vec == NULL) {
@@ -43,15 +43,19 @@ void VectorPush(struct Vector *vec, void *val)
 {
 	if (vec->cap == vec->size) {
 		vec->cap *= REALLOC_SCALE;
-		vec->data = realloc(vec->data, vec->cap * vec->item_size);
+		void *tmp = realloc(vec->data, vec->cap * vec->item_size);
+		if (tmp == NULL) {
+			tmp = malloc(vec->cap * vec->item_size);
+			memcpy(tmp, vec->data, vec->size * vec->item_size);
+		}
+
+		vec->data = tmp;
 	}
 
 	void *dest = (u8 *)vec->data + vec->item_size * vec->size;
 	memcpy(dest, val, vec->item_size);
 
 	vec->size++;
-
-	return;
 }
 
 void VectorPop(struct Vector *vec)
@@ -62,7 +66,12 @@ void VectorPop(struct Vector *vec)
 	vec->size--;
 	if (vec->size <= vec->cap / 4 && vec->cap > REALLOC_SCALE) {
 		size_t new_size = vec->cap / REALLOC_SCALE;
-		vec->data = realloc(vec->data, new_size * vec->item_size);
+		void *tmp = realloc(vec->data, new_size * vec->item_size);
+		if (tmp == NULL) {
+			tmp = malloc(vec->cap * vec->item_size);
+			memcpy(tmp, vec->data, vec->size * vec->item_size);
+		}
+		vec->data = tmp;
 		vec->cap = new_size;
 	}
 }

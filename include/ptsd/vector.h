@@ -1,3 +1,6 @@
+#ifndef VECTOR_H
+#define VECTOR_H
+
 #include <stdlib.h>
 
 #ifndef REALLOC_SCALE
@@ -6,7 +9,7 @@
 
 typedef enum {
 	VECTOR_SUCCESS = 0,
-	VECTOR_ERR_SIZE_INVALID_PTR,
+	VECTOR_ERR_SIZE_INVALID,
 	VECTOR_ERR_INVALID_PTR,
 	VECTOR_ERR_INDEX_INVALID,
 } VECTOR_ERROR_TYPE;
@@ -27,3 +30,7 @@ void VectorPush(struct Vector *vec, void *val);
 void VectorPop(struct Vector *vec);
 
 size_t VectorLength(struct Vector *vec);
+
+#define VECTOR_H
+
+#endif
