@@ -1,0 +1,16 @@
+[
+{
+  "directory": "/home/electwix/dev/C/ptsd",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-Iinclude", "-DNDEBUG", "-o", "build/.objs/test_vector/linux/x86_64/release/test/test_vector.c.o", "test/test_vector.c"],
+  "file": "test/test_vector.c"
+},
+{
+  "directory": "/home/electwix/dev/C/ptsd",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-Iinclude", "-DNDEBUG", "-o", "build/.objs/test_vector/linux/x86_64/release/src/vector.c.o", "src/vector.c"],
+  "file": "src/vector.c"
+},
+{
+  "directory": "/home/electwix/dev/C/ptsd",
+  "arguments": ["/usr/bin/gcc", "-c", "-m64", "-fvisibility=hidden", "-O3", "-Iinclude", "-DNDEBUG", "-o", "build/.objs/ptsd/linux/x86_64/release/src/vector.c.o", "src/vector.c"],
+  "file": "src/vector.c"
+}]
