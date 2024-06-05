@@ -15,5 +15,5 @@ for _, file in ipairs(os.files("test/test_*.c")) do
 	add_files("test/" .. name .. ".c")
 	add_includedirs("include")
 	add_files("src/*.c")
-	add_tests("default")
+	add_tests(name)
 end

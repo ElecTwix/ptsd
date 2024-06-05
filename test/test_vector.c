@@ -37,6 +37,7 @@ void test_vector_pop(void)
 	CU_ASSERT_EQUAL(a, VECTOR_SUCCESS);
 	int b = 10;
 	VectorPush(&vec, &b);
+	CU_ASSERT_EQUAL(vec.size, 1);
 	VectorPop(&vec);
 	CU_ASSERT_EQUAL(vec.size, 0);
 	CU_ASSERT_PTR_NOT_NULL(vec.data);
@@ -58,7 +59,7 @@ void test_vector_get(void)
 	CU_PASS("passed test_vector_get");
 }
 
-void test_vector_resize(void)
+void test_vector_resize_up(void)
 {
 	struct Vector vec;
 	int a = VectorInit(&vec, 10, sizeof(int));
@@ -101,7 +102,7 @@ void test_vector_get_length(void)
 	CU_PASS("passed test_vector_get_length");
 }
 
-void main(void)
+int main(void)
 {
 	CU_initialize_registry();
 	CU_pSuite suite = CU_add_suite("vector", NULL, NULL);
@@ -110,8 +111,8 @@ void main(void)
 	CU_add_test(suite, "test_vector_push", test_vector_push);
 	CU_add_test(suite, "test_vector_pop", test_vector_pop);
 	CU_add_test(suite, "test_vector_get", test_vector_get);
-	CU_add_test(suite, "test_vector_resize", test_vector_resize);
 
+	CU_add_test(suite, "test_vector_resize_up", test_vector_resize_up);
 	CU_add_test(suite, "test_vector_resize_down", test_vector_resize_down);
 	CU_add_test(suite, "test_vector_get_length", test_vector_get_length);
 
@@ -121,8 +122,8 @@ void main(void)
 
 	if (CU_get_number_of_tests_failed() > 0) {
 		CU_cleanup_registry();
-		exit(1);
+		return 1;
 	}
 
-	exit(0);
+	return 0;
 }
