@@ -9,7 +9,8 @@ Can be used for any project, but it's not recommended for production use.
 ### Goals
 
 [X] Auto grow and shrink dynamic array. \
-[X] Hash map implementation.
+[X] Hash map implementation. \
+[X] Memory Arena.
 
 ## Testing
 
